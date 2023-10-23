@@ -13,7 +13,9 @@ This module contains all the common features of Hospital Management System.
     'author': "rereasdev",
     'sequence': -100,
     'depends': [],
-    'data': [],
+    'data': [
+        'views/menu.xml',
+    ],
     'demo': [],
     'application': True,
     'installable': True,
