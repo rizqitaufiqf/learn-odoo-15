@@ -15,6 +15,7 @@ This module contains all the common features of Hospital Management System.
     'depends': [],
     'data': [
         'views/menu.xml',
+        'views/patient_view.xml'
     ],
     'demo': [],
     'application': True,
