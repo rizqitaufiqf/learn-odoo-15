@@ -1,0 +1,11 @@
+
+# Packages
+# OpenAPI: enable only if the system needs restful api (integration to external system / apps)
+bravado-core==6.1.0
+swagger-spec-validator==3.0.3
+jsonschema<4
+
+# Backup database to gcp
+google-cloud-storage==2.9.0
+
+wdb==3.3.0 # Just for development, remove in production 

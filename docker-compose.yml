@@ -1,0 +1,73 @@
+version: '3.1'
+services:
+  web:
+    container_name: odoo-15
+    image: odoo:15.0
+    # command: sh -c "pip install -r /mnt/requirements.txt && odoo --load openapi,base,web --config=/etc/odoo/odoo.conf"
+    command: sh -c "python3 -m pip install -r /mnt/requirements.txt && odoo --config=/etc/odoo/odoo.conf"
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoo-15-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+      - ./odoo-addons:/mnt/custom-addons
+      - ./requirements.txt:/mnt/requirements.txt
+    environment:
+      - ODOO_DB_PASSWORD_FILE=/run/secrets/postgresql_password
+      - PASSWORD_FILE=/run/secrets/postgresql_password
+      - WDB_SOCKET_SERVER=wdb # (REMOVE THIS IN PRODUCTION)
+      - WDB_NO_BROWSER_AUTO_OPEN=True # (REMOVE THIS IN PRODUCTION)
+      - TZ=Asia/Jakarta # untested
+    secrets:
+      - postgresql_password
+    restart: always
+    links:
+      - wdb
+    networks:
+      - odoo_15
+  db:
+    container_name: odoo-15-db
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgresql_password
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_HOST_AUTH_METHOD=trust # Allow all connections (REMOVE THIS IN PRODUCTION)
+    volumes:
+      - odoo-15-db-data:/var/lib/postgresql/data/pgdata
+    secrets:
+      - postgresql_password
+    restart: always
+    networks:
+      - odoo_15
+  adminer:
+    container_name: odoo-15-adminer
+    image: adminer
+    restart: always
+    ports:
+      - "8070:8080"
+    networks:
+      - odoo_15
+  wdb:
+    container_name: odoo-15-wdb
+    image: kozea/wdb
+    restart: always
+    ports:
+      - "1984:1984"
+    networks:
+      - odoo_15
+volumes:
+  odoo-15-web-data:
+  odoo-15-db-data:
+
+
+secrets:
+  postgresql_password:
+    file: odoo_pg_pass
+
+networks:
+  odoo_15:

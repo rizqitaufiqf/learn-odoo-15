@@ -8,7 +8,7 @@ To make it easy for you to get started with GitLab, here's a list of recommended
 
 Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-## Add your files
+## Add your files (Gitlab)
 
 - [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
 - [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
@@ -16,6 +16,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 ```
 cd existing_repo
 git remote add origin https://gitlab.com/shin-sekai/learn-odoo-15.git
+git branch -M main
+git push -uf origin main
+```
+
+## Add your files (Github)
+```
+cd existing_repo
+git remote add origin https://github.com/rizqitaufiqf/learn-odoo-15.git
 git branch -M main
 git push -uf origin main
 ```
