@@ -7,13 +7,12 @@
     'version': '1.0.0',
     'category': 'Hospital',
     'summary': 'Hospital Management System',
-    'description': """
-This module contains all the common features of Hospital Management System.
-    """,
+    'description': """This module contains all the common features of Hospital Management System.""",
     'author': "rereasdev",
     'sequence': -100,
     'depends': [],
     'data': [
+        'security/ir.model.access.csv',
         'views/menu.xml',
         'views/patient_view.xml',
     ],
