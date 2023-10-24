@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <odoo>
+    <!-- Create Patient Form -->
     <record id="view_hospital_patient_form" model="ir.ui.view">
         <field name="name">hospital.patient.form</field>
         <field name="model">hospital.patient</field>
@@ -13,6 +14,7 @@
                             <field name="age"/>
                         </group>
                         <group>
+                            <field name="ref"/>
                             <field name="gender"/>
                         </group>
                     </group>
@@ -21,17 +23,40 @@
         </field>
     </record>
 
+    <!-- Patient List View -->
     <record id="view_hospital_patient_tree" model="ir.ui.view">
         <field name="name">hospital.patient.tree</field>
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name" string="Patient Name"/>
+                <field name="ref"/>
                 <field name="age"/>
+                <field name="gender"/>
             </tree>
         </field>
     </record>
 
+    <!-- Patient Search View (to make user can search patient on search form/input) -->
+    <record id="view_hospital_patient_search" model="ir.ui.view">
+        <field name="name">hospital.patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <!--
+                    filer_domain used to make search more than 1 column in that search (ex: name and ref)
+                    filter_domain [operator, (first column syntax), (second column syntax)]
+                    filter_domain [1st operator, 2nd operator, (1st column syntax), (2nd column syntax), (3rd column syntax)]
+                -->
+                <field name="name" string="Patient Name" filter_domain="['|', ('name', 'ilike', self), ('ref', 'ilike', self)]"/>
+                <field name="ref"/>
+                <field name="age"/>
+                <field name="gender"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Patient Window UI -->
     <record id="action_hospital_patient" model="ir.actions.act_window">
         <field name="name">Patients</field>
         <field name="type">ir.actions.act_window</field>
