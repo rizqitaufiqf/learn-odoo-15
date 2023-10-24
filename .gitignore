@@ -1,3 +1,4 @@
 .idea
+.pyc
 *_bc*
 odoo_pg_pass

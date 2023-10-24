@@ -39,7 +39,7 @@
 
     <!-- Patient Search View (to make user can search patient on search form/input) -->
     <record id="view_hospital_patient_search" model="ir.ui.view">
-        <field name="name">hospital.patient.search</field>
+        <field name="name">hospital.patient .search</field>
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <search>
@@ -48,10 +48,28 @@
                     filter_domain [operator, (first column syntax), (second column syntax)]
                     filter_domain [1st operator, 2nd operator, (1st column syntax), (2nd column syntax), (3rd column syntax)]
                 -->
-                <field name="name" string="Patient Name" filter_domain="['|', ('name', 'ilike', self), ('ref', 'ilike', self)]"/>
+                <field name="name" string="Patient Name"
+                       filter_domain="['|', ('name', 'ilike', self), ('ref', 'ilike', self)]"/>
                 <field name="ref"/>
                 <field name="age"/>
                 <field name="gender"/>
+
+                <!-- custom filter -->
+                <filter name="filter_male" string="Male" domain="[('gender','=', 'male')]"/>
+                <!--
+                    if you want the filter is not combine each other you can use <separator/> tag
+                    if <separator/> tag doesn't exist, the filter result will be combined (ex: male or female)
+                    and if <separator/> tag exist, the filter result will not combine (ex: male and female)
+                -->
+                <!-- <separator/> -->
+                <filter name="filter_female" string="Female" domain="[('gender','=', 'female')]"/>
+                <separator/>
+                <filter name="filter_kids" string="Kids" domain="[('age','&lt;', 5)]"/>
+
+                <!-- custom group by -->
+                <group expand="0" string="Group By">
+                    <filter name="group_by_gender" string="Gender" context="{'group_by': 'gender'}"/>
+                </group>
             </search>
         </field>
     </record>
