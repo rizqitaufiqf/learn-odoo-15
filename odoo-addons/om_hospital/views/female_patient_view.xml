@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <!-- Female Patient Window UI -->
+    <record id="action_hospital_female_patient" model="ir.actions.act_window">
+        <field name="name">Female Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <!-- filter the patient show here only female -->
+        <field name="domain">[('gender', '=', 'female')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Female Patient!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_female_patient"
+              name="Female Patient"
+              parent="menu_patient_master"
+              action="action_hospital_female_patient"
+              sequence="10"/>
+</odoo>
