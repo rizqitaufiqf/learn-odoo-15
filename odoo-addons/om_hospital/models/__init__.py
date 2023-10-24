@@ -1,1 +1,4 @@
-from . import patient
+from . import (
+    patient,
+    appointment
+)
