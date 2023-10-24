@@ -16,6 +16,12 @@
                         <group>
                             <field name="ref"/>
                             <field name="gender"/>
+                            <!--
+                                this active field must be specified on this form
+                                if not, the archive action will not appear.
+                                So, we can use invisible="True" to hide the field
+                            -->
+                            <field name="active" invisible="True"/>
                         </group>
                     </group>
                 </sheet>
@@ -64,7 +70,9 @@
                 <!-- <separator/> -->
                 <filter name="filter_female" string="Female" domain="[('gender','=', 'female')]"/>
                 <separator/>
-                <filter name="filter_kids" string="Kids" domain="[('age','&lt;', 5)]"/>
+                <filter name="filter_kids" string="Kids" domain="[('age','&lt;=', 5)]"/>
+                <separator/>
+                <filter name="filter_archived" string="Archived" domain="[('active','=', False)]"/>
 
                 <!-- custom group by -->
                 <group expand="0" string="Group By">
