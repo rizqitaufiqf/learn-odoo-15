@@ -11,8 +11,10 @@
                     <group>
                         <group>
                             <field name="patient_id"/>
+                            <field name="booking_date"/>
                         </group>
                         <group>
+                            <field name="appointment_time" attrs="{'readonly': True}"/>
                         </group>
                     </group>
                 </sheet>
@@ -34,6 +36,9 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="patient_id"/>
+                <field name="booking_date"/>
+                <field name="appointment_time"/>
             </tree>
         </field>
     </record>
@@ -63,8 +68,8 @@
     </record>
 
     <menuitem id="menu_appointment"
-              name="Appointment"
-              parent="menu_patient_master"
+              name="Appointments"
+              parent="menu_appointment_master"
               action="action_hospital_appointment"
               sequence="20"/>
 </odoo>

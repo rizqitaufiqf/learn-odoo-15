@@ -14,5 +14,5 @@ class HospitalPatient(models.Model):
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
-    ], string='Gender', tracking=True)
+    ], string='Gender', tracking=True, default='male')
     active = fields.Boolean(string='Active', default=True)
