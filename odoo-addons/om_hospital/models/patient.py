@@ -9,7 +9,7 @@ class HospitalPatient(models.Model):
 
     name = fields.Char(string='Name')
     ref = fields.Char(string='Reference')
-    age = fields.Integer(string='Age')
+    age = fields.Integer(string='Age', group_operator='avg')
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
