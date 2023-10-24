@@ -10,12 +10,17 @@
     'description': """This module contains all the common features of Hospital Management System.""",
     'author': "rereasdev",
     'sequence': -100,
+    # any module necessary for this one to work correctly
     'depends': [],
+    # always loaded
     'data': [
+        # access rights for model
         'security/ir.model.access.csv',
+        # views
         'views/menu.xml',
         'views/patient_view.xml',
     ],
+    # only loaded in demonstration mode
     'demo': [],
     'application': True,
     'installable': True,
