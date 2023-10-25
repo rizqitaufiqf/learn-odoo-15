@@ -59,6 +59,11 @@
                 <field name="priority" widget="priority" attrs="{'readonly': True}"/>
                 <field name="booking_date"/>
                 <field name="appointment_time"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'done'"
+                       decoration-info="state == 'in_consultation'"
+                       decoration-warning="state == 'draft'"
+                       decoration-danger="state == 'cancel'"/>
             </tree>
         </field>
     </record>
