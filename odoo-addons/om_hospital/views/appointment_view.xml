@@ -13,12 +13,18 @@
                             <field name="patient_id"/>
                             <field name="ref"/>
                             <field name="gender"/>
-                            <field name="booking_date"/>
                         </group>
                         <group>
                             <field name="appointment_time" attrs="{'readonly': True}"/>
+                            <field name="booking_date"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Prescription" name="prescription">
+                        </page>
+                        <page string="Pharmacy" name="pharmacy">
+                        </page>
+                    </notebook>
                 </sheet>
                 <!-- Chatter View -->
                 <sheet>
@@ -52,9 +58,11 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <search>
-                <filter name="filter_booking_date" string="Remaining" domain="[('booking_date', '&gt;', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00'))]"/>
+                <filter name="filter_booking_date" string="Remaining"
+                        domain="[('booking_date', '&gt;', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00'))]"/>
                 <group expand="0" string="Group By">
-                    <filter name="group_by_booking_date" string="Booking Date" context="{'group_by': 'booking_date:day'}"/>
+                    <filter name="group_by_booking_date" string="Booking Date"
+                            context="{'group_by': 'booking_date:day'}"/>
                 </group>
             </search>
         </field>
@@ -67,9 +75,9 @@
         <field name="res_model">hospital.appointment</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{
-                'search_default_filter_booking_date': 1,
-                'search_default_group_by_booking_date': 1
-           }
+            'search_default_filter_booking_date': 1,
+            'search_default_group_by_booking_date': 1
+        }
         </field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
