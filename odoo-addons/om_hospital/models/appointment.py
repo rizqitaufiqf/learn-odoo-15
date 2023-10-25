@@ -1,11 +1,16 @@
 from odoo import api, fields, models
-from datetime import datetime, timedelta, date
 
 
 class HospitalAppointment(models.Model):
     _name = 'hospital.appointment'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Hospital Appointment'
+    """
+        This field must be specified on this form because it doesn't have 'name' field.
+        This field determines how the records of a model are displayed in various parts of the Odoo user interface, 
+        such as in list views, form views, and search results.
+    """
+    _rec_name = 'patient_id'
 
     patient_id = fields.Many2one(comodel_name='hospital.patient', string='Patient')
     ref = fields.Char(string='Reference')
