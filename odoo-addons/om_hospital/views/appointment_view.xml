@@ -21,6 +21,7 @@
                     </group>
                     <notebook>
                         <page string="Prescription" name="prescription">
+                            <field name="prescription" placeholder="Enter you Prescription"/>
                         </page>
                         <page string="Pharmacy" name="pharmacy">
                         </page>
