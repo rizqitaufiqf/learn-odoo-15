@@ -62,6 +62,7 @@
                 <field name="priority" widget="priority" attrs="{'readonly': True}"/>
                 <field name="booking_date"/>
                 <field name="appointment_time"/>
+                <field name="activity_ids" widget="list_activity"/>
                 <field name="state" widget="badge"
                        decoration-success="state == 'done'"
                        decoration-info="state == 'draft'"
