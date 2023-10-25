@@ -8,6 +8,11 @@
         <field name="arch" type="xml">
             <form duplicate="0">
                 <sheet>
+                    <div class="oe_title">
+                        <h2>
+                            <field name="priority" widget="priority" class="mr-3" />
+                        </h2>
+                    </div>
                     <group>
                         <group>
                             <field name="patient_id"/>
@@ -47,6 +52,7 @@
             <tree expand="1" default_order="booking_date asc" export_xlsx="0">
                 <field name="patient_id"/>
                 <field name="ref"/>
+                <field name="priority" widget="priority" attrs="{'readonly': True}"/>
                 <field name="booking_date"/>
                 <field name="appointment_time"/>
             </tree>
