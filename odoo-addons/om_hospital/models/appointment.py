@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from datetime import datetime, timedelta, date
 
 
 class HospitalAppointment(models.Model):
@@ -7,7 +8,16 @@ class HospitalAppointment(models.Model):
     _description = 'Hospital Appointment'
 
     patient_id = fields.Many2one(comodel_name='hospital.patient', string='Patient')
+    ref = fields.Char(string='Reference')
     gender = fields.Selection(string='Gender', related='patient_id.gender')
     appointment_time = fields.Datetime(string='Appointment Time', default=fields.Datetime.now)
     booking_date = fields.Datetime(string='Booking Date', tracking=True)
 
+    @api.onchange('patient_id')
+    def _onchange_patient_id(self):
+        self.ref = self.patient_id.ref
+
+    @api.onchange('booking_date')
+    def _delete_seconds(self):
+        if self.booking_date:
+            self.booking_date = self.booking_date.replace(second=0, microsecond=0)
