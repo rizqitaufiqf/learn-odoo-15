@@ -53,7 +53,10 @@
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-            <tree expand="1" default_order="booking_date asc" export_xlsx="0">
+            <tree expand="1" default_order="booking_date asc" export_xlsx="0"
+                  decoration-success="state == 'done'"
+                  decoration-warning="state == 'in_consultation'"
+                  decoration-danger="state == 'cancel'">
                 <field name="patient_id"/>
                 <field name="ref"/>
                 <field name="priority" widget="priority" attrs="{'readonly': True}"/>
@@ -61,8 +64,8 @@
                 <field name="appointment_time"/>
                 <field name="state" widget="badge"
                        decoration-success="state == 'done'"
-                       decoration-info="state == 'in_consultation'"
-                       decoration-warning="state == 'draft'"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'in_consultation'"
                        decoration-danger="state == 'cancel'"/>
             </tree>
         </field>
