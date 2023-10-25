@@ -57,13 +57,14 @@
                   decoration-success="state == 'done'"
                   decoration-warning="state == 'in_consultation'"
                   decoration-danger="state == 'cancel'">
-                <field name="patient_id"/>
-                <field name="ref"/>
-                <field name="priority" widget="priority" attrs="{'readonly': True}"/>
-                <field name="booking_date"/>
-                <field name="appointment_time"/>
-                <field name="activity_ids" widget="list_activity"/>
-                <field name="state" widget="badge"
+                <field name="patient_id" optional="show"/>
+                <field name="ref" optional="show"/>
+                <field name="gender" optional="hide"/>
+                <field name="priority" widget="priority" optional="show" attrs="{'readonly': True}"/>
+                <field name="booking_date" optional="show"/>
+                <field name="appointment_time" optional="show"/>
+                <field name="activity_ids" widget="list_activity" optional="show"/>
+                <field name="state" widget="badge" optional="show"
                        decoration-success="state == 'done'"
                        decoration-info="state == 'draft'"
                        decoration-warning="state == 'in_consultation'"
