@@ -24,8 +24,9 @@
                             <field name="gender"/>
                         </group>
                         <group>
-                            <field name="appointment_time" attrs="{'readonly': True}"/>
+                            <field name="doctor_id" widget="many2one_avatar_user"/>
                             <field name="booking_date"/>
+                            <field name="appointment_time" attrs="{'readonly': True}"/>
                         </group>
                     </group>
                     <notebook>
@@ -60,6 +61,7 @@
                 <field name="patient_id" optional="show"/>
                 <field name="ref" optional="show"/>
                 <field name="gender" optional="hide"/>
+                <field name="doctor_id" widget="many2one_avatar_user" optional="show"/>
                 <field name="priority" widget="priority" optional="show" attrs="{'readonly': True}"/>
                 <field name="booking_date" optional="show"/>
                 <field name="appointment_time" optional="show"/>
