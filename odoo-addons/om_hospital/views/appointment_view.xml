@@ -55,7 +55,7 @@
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-            <tree expand="1" sample="1" default_order="booking_date asc" export_xlsx="0"
+            <tree expand="1" sample="1" multi_edit="1" default_order="booking_date asc" export_xlsx="0"
                   decoration-success="state == 'done'"
                   decoration-warning="state == 'in_consultation'"
                   decoration-danger="state == 'cancel'">
@@ -65,7 +65,7 @@
                 <field name="doctor_id" widget="many2one_avatar_user" optional="show"/>
                 <field name="priority" widget="priority" optional="show" attrs="{'readonly': True}"/>
                 <field name="booking_date" optional="show"/>
-                <field name="appointment_time" optional="show"/>
+                <field name="appointment_time" optional="show" attrs="{'readonly': True}"/>
                 <field name="activity_ids" widget="list_activity" optional="show"/>
                 <field name="state" widget="badge" optional="show"
                        decoration-success="state == 'done'"
