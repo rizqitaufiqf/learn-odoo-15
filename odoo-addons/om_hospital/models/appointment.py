@@ -23,7 +23,8 @@ class HospitalAppointment(models.Model):
         and the primary id of the model as inverse_name (ex: appointment_id)
         also, don't forget to define inverse_name (ex: appointment_id) as Many2one on the source model
     """
-    pharmacy_detail_ids = fields.One2many(comodel_name='hospital.appointment.pharmacy.details', inverse_name='appointment_id',
+    pharmacy_detail_ids = fields.One2many(comodel_name='hospital.appointment.pharmacy.details',
+                                          inverse_name='appointment_id',
                                           string="Pharmacy Details")
     priority = fields.Selection([
         ('0', 'Low'),

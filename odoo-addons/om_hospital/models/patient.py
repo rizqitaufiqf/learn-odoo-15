@@ -18,6 +18,8 @@ class HospitalPatient(models.Model):
         ('female', 'Female'),
     ], string='Gender', tracking=True, default='male')
     active = fields.Boolean(string='Active', default=True)
+    appointment_ids = fields.One2many(comodel_name='hospital.appointment', inverse_name="patient_id",
+                                      string='Hospital Appointment id')
 
     @api.depends('date_of_birth')
     def _compute_age(self):
@@ -25,6 +27,6 @@ class HospitalPatient(models.Model):
             if record.date_of_birth:
                 today = date.today()
                 record.age = today.year - record.date_of_birth.year - (
-                            (today.month, today.day) < (record.date_of_birth.month, record.date_of_birth.day))
+                        (today.month, today.day) < (record.date_of_birth.month, record.date_of_birth.day))
             else:
                 record.age = 0
