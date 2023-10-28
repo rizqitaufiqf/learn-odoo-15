@@ -20,6 +20,7 @@ class HospitalPatient(models.Model):
     active = fields.Boolean(string='Active', default=True)
     appointment_ids = fields.One2many(comodel_name='hospital.appointment', inverse_name="patient_id",
                                       string='Hospital Appointment id')
+    image = fields.Binary(string='Image')
 
     @api.depends('date_of_birth')
     def _compute_age(self):

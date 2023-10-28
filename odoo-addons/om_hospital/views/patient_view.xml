@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <form duplicate="0">
                 <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
                     <group>
                         <group>
                             <field name="name"/>
@@ -79,8 +80,8 @@
                 <!-- <separator/> -->
                 <filter name="filter_female" string="Female" domain="[('gender','=', 'female')]"/>
                 <separator/>
-<!--                <filter name="filter_kids" string="Kids" domain="[('age','&lt;=', 5)]"/>-->
-<!--                <separator/>-->
+                <!--                <filter name="filter_kids" string="Kids" domain="[('age','&lt;=', 5)]"/>-->
+                <!--                <separator/>-->
                 <filter name="filter_archived" string="Archived" domain="[('active','=', False)]"/>
 
                 <!-- custom group by -->
