@@ -1,6 +1,9 @@
 # learn-odoo-15
 
-### source: https://www.youtube.com/watch?v=DfWNBhk2INc&list=PLqRRLx0cl0hoZM788LH5M8q7KhiXPyuVU
+### Source
+```
+https://www.youtube.com/watch?v=DfWNBhk2INc&list=PLqRRLx0cl0hoZM788LH5M8q7KhiXPyuVU
+```
 
 ## Getting started
 
