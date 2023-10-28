@@ -8,7 +8,13 @@
         <field name="arch" type="xml">
             <form duplicate="0">
                 <header>
-                    <field name="state" widget="statusbar" nolabel="1" options="{'clickable': '1'}"
+                    <button name="action_in_consultation" string="In Consultation" type="object" states="draft"
+                            class="oe_highlight"/>
+                    <button name="action_done" string="Mark As Done" type="object" states="in_consultation"
+                            class="oe_highlight"/>
+                    <button name="action_cancel" string="Cancel" type="object" states="draft,in_consultation"/>
+                    <button name="action_redraft" string="Reset to Draft" type="object" states="cancel"/>
+                    <field name="state" widget="statusbar" nolabel="1"
                            statusbar_visible="draft,in_consultation,done"/>
                 </header>
                 <sheet>
@@ -32,7 +38,7 @@
                     <notebook>
                         <page string="Prescription" name="prescription">
                             <field name="prescription" placeholder="Enter you Prescription"
-                            options="{'collaborative': true, 'resizable': true}"/>
+                                   options="{'collaborative': true, 'resizable': true}"/>
                         </page>
                         <page string="Pharmacy" name="pharmacy">
                         </page>

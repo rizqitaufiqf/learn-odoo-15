@@ -27,9 +27,9 @@ class HospitalAppointment(models.Model):
         ('draft', 'Draft'),
         ('in_consultation', 'In Consultation'),
         ('done', 'Done'),
-        ('cancel', 'Cancel')
+        ('cancel', 'Cancelled')
     ], string='Status', default='draft', tracking=True)
-    doctor_id = fields.Many2one(comodel_name='res.users', string='Doctor')
+    doctor_id = fields.Many2one(comodel_name='res.users', string='Doctor', tracking=True)
 
     @api.onchange('patient_id')
     def _onchange_patient_id(self):
@@ -39,3 +39,19 @@ class HospitalAppointment(models.Model):
     def _delete_seconds(self):
         if self.booking_date:
             self.booking_date = self.booking_date.replace(second=0, microsecond=0)
+
+    def action_in_consultation(self):
+        for rec in self:
+            rec.state = 'in_consultation'
+
+    def action_done(self):
+        for rec in self:
+            rec.state = 'done'
+
+    def action_cancel(self):
+        for rec in self:
+            rec.state = 'cancel'
+
+    def action_redraft(self):
+        for rec in self:
+            rec.state = 'draft'
