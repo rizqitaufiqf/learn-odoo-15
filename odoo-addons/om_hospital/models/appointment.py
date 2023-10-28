@@ -18,6 +18,13 @@ class HospitalAppointment(models.Model):
     appointment_time = fields.Datetime(string='Appointment Time', default=fields.Datetime.now)
     booking_date = fields.Datetime(string='Booking Date', tracking=True)
     prescription = fields.Html(string='Prescription')
+    """ 
+        if fields is One2many, you must specify _ids in the end of column name 
+        and the primary id of the model as inverse_name (ex: appointment_id)
+        also, don't forget to define inverse_name (ex: appointment_id) as Many2one on the source model
+    """
+    pharmacy_detail_ids = fields.One2many(comodel_name='hospital.appointment.pharmacy.details', inverse_name='appointment_id',
+                                          string="Pharmacy Details")
     priority = fields.Selection([
         ('0', 'Low'),
         ('1', 'Normal'),
@@ -55,3 +62,16 @@ class HospitalAppointment(models.Model):
     def action_redraft(self):
         for rec in self:
             rec.state = 'draft'
+
+
+class AppointmentPharmacyDetails(models.Model):
+    _name = 'hospital.appointment.pharmacy.details'
+    _description = 'Hospital Appointment pharmacy details'
+
+    product_id = fields.Many2one(comodel_name='product.product', string='Product', required=True)
+    price_unit = fields.Float(related="product_id.list_price", string='Price Unit')
+    qty = fields.Integer(string='Quantity', default=1)
+    """
+        define inverse_name Many2one on this column regarding One2many field of the defined One2many model
+    """
+    appointment_id = fields.Many2one(comodel_name='hospital.appointment', string='Hospital Appointment id')

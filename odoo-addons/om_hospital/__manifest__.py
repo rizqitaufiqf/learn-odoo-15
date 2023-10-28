@@ -11,7 +11,7 @@
     'author': "rereasdev",
     'sequence': -100,
     # any module necessary for this one to work correctly
-    'depends': ['mail'],
+    'depends': ['mail', 'product'],
     # always loaded
     'data': [
         # access rights for model
