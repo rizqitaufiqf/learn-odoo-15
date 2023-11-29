@@ -4,7 +4,7 @@ services:
     container_name: odoo-15
     image: odoo:15.0
     # command: sh -c "pip install -r /mnt/requirements.txt && odoo --load openapi,base,web --config=/etc/odoo/odoo.conf"
-    command: sh -c "python3 -m pip install -r /mnt/requirements.txt && odoo --config=/etc/odoo/odoo.conf"
+    command: sh -c "python3 -m pip install -r /mnt/requirements.txt && odoo --config=/etc/odoo/odoo.conf --dev xml,reload" # delete --dev in production
     depends_on:
       - db
     ports:
